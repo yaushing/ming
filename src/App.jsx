@@ -3,7 +3,7 @@ import bg from './assets/background.jpg';
 import './assets/css/style.css';
 
 const MESSAGES = [
-	"You're so damn cute, aways, from every angle you're always cute.",
+	"You're so damn cute, always, from every angle you're always cute.",
 	"Babe your smile lights up my world.",
 	"You *are* my world.",
 	"I love you thoughtful you are with your gifts.",
