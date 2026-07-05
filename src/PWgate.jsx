@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './assets/css/style.css'
 
 // Replace with the SHA-256 hash of your chosen passcode
-const CORRECT_HASH = '96fd77d42e0ae001339575d4651a7ac9cbaa658aa7a770802464bcc625c40a92';
+const CORRECT_HASH = 'a896bb373bb28489124a9a6c59ba36718e9b4b01322438c9ba6620da947dfe44';
 
 async function sha256(text) {
     const encoder = new TextEncoder();
