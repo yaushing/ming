@@ -96,3 +96,32 @@ footer {
 .footer-container > * {
     margin: auto;
 }
+.content-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 80lvw;
+    height: 50lvh;
+    padding: 0 1rem;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 50px;
+    border: 5px solid #FFFFFF;
+}
+
+.message {
+    font-size: 50px;
+    overflow: scroll;
+}
