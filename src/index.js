@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import PasscodeGate from './PWgate';
+import Mad from './Mad'
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('body'));
+
+const mad = true;
 root.render(
 	<React.StrictMode>
     	<PasscodeGate>
-     		<App />
+     		{mad ? <Mad />: <App />}
     	</PasscodeGate>
   	</React.StrictMode>
 );

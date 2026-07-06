@@ -41,6 +41,14 @@ footer {
     background-repeat: no-repeat;
 }
 
+.navbar-s {
+    position: absolute;
+    height: 75px;
+    background-image: url("../headers.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 @media only screen and (min-width: 600px) {
     .title {
@@ -87,6 +95,23 @@ footer {
     text-align: center;
     justify-content: center;
     background-image: url('../footer.png');
+    color: #9d9d9d; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer-containers {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    background-image: url('../footers.png');
     color: #9d9d9d; 
     background-size: cover;
     background-position: center;
