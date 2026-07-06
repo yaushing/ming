@@ -4,6 +4,7 @@ import './assets/css/style.css'
 
 // Replace with the SHA-256 hash of your chosen passcode
 const CORRECT_HASH = 'a896bb373bb28489124a9a6c59ba36718e9b4b01322438c9ba6620da947dfe44';
+const ADMIN_HASH = '19be86d8193d3b7c1a64e1c8458acb06ebfc7576b367d720bd4be08c288f3682'
 
 async function sha256(text) {
     const encoder = new TextEncoder();
@@ -28,41 +29,47 @@ function Forbidden403({ onRetry }) {
     );
 }
 
-export default function PasscodeGate({ children }) {
-    const [authorized, setAuthorized] = useState(false);
+export default function PasscodeGate({ children, adminContent }) {
+    const [mode, setMode] = useState('checking');
     const [input, setInput] = useState('');
-    const [status, setStatus] = useState('idle'); // 'idle' | 'blocked'
-    const [checked, setChecked] = useState(false);
 
     useEffect(() => {
-        if (sessionStorage.getItem('authorized') === 'true') {
-            setAuthorized(true);
+        const saved = sessionStorage.getItem('access_mode');
+        if (saved === 'user' || saved === 'admin') {
+            setMode(saved);
+        } else {
+            setMode('locked');
         }
-        setChecked(true);
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const hashed = await sha256(input);
-        if (hashed === CORRECT_HASH) {
-            sessionStorage.setItem('authorized', 'true');
-            setAuthorized(true);
-            setStatus('idle');
+        console.log(input)
+        console.log(hashed)
+        console.log(ADMIN_HASH)
+        console.log(CORRECT_HASH)
+        if (hashed === ADMIN_HASH) {
+            sessionStorage.setItem('access_mode', 'admin');
+            setMode('admin');
+        }
+        else if (hashed === CORRECT_HASH) {
+            sessionStorage.setItem('access_mode', 'user');
+            setMode('user');
         } else {
-            setStatus('blocked');
+            setMode('blocked');
         }
     };
 
     const handleRetry = () => {
         setInput('');
-        setStatus('idle');
+        setMode('locked');
     };
 
-    if (!checked) return null;
-
-    if (authorized) return children;
-
-    if (status === 'blocked') {
+    if (mode === 'checking') return null;
+    if (mode === 'admin') return adminContent;
+    if (mode === 'user') return children;
+    if (mode === 'blocked') {
         return <Forbidden403 onRetry={handleRetry} />;
     }
 
